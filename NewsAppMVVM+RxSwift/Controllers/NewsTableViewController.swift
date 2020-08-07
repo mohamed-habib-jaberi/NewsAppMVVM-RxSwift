@@ -15,6 +15,8 @@ class NewsTableViewController: UITableViewController {
 
     let disposeBag = DisposeBag()
     
+    private var articleListVM: ArticleListViewModel!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -31,8 +33,16 @@ class NewsTableViewController: UITableViewController {
         let resource = Resource<ArticleResponse>(url: url )
         
         URLRequest.load(resource: resource)
-            .subscribe(onNext: {
-                print($0)
+            .subscribe(onNext: { articleResponse in
+                
+                let articles = articleResponse.articles
+                self.articleListVM = ArticleListViewModel(articles)
+                
+                DispatchQueue.main.async {
+                    self.tableView.reloadData()
+                }
+                
+               
             }).disposed(by: disposeBag)
         
         
@@ -42,23 +52,33 @@ class NewsTableViewController: UITableViewController {
 
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        return 0
+        return 1
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
-        return 0
+        return self.articleListVM == nil ? 0 : self.articleListVM.articleVM.count
     }
 
     
-//    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-//        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
-//
-//        // Configure the cell...
-//
-//        return cell
-//    }
-//    
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+     guard let cell = tableView.dequeueReusableCell(withIdentifier: "ArticleTableViewCell", for: indexPath) as? ArticleTableViewCell else { fatalError("ArticleTableViewCell not found")}
+        
+        let articleVM = self.articleListVM.articleAt(indexPath.row)
+        
+        // we can use Bind ou Driver Approch
+        // Using Driver Approch
+        articleVM.title.asDriver(onErrorJustReturn: "")
+            .drive(cell.titleLabe.rx.text)
+            .disposed(by: disposeBag)
+        
+        articleVM.description.asDriver(onErrorJustReturn: "")
+                   .drive(cell.descriptionLabe.rx.text)
+                   .disposed(by: disposeBag)
+
+    
+        return cell
+    }
+    
 
 
 
