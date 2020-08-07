@@ -13,6 +13,7 @@
 		6147008024DD733D00C58F7A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6147007F24DD733D00C58F7A /* Assets.xcassets */; };
 		6147008324DD733D00C58F7A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6147008124DD733D00C58F7A /* LaunchScreen.storyboard */; };
 		6147008C24DD74EA00C58F7A /* NewsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6147008B24DD74EA00C58F7A /* NewsTableViewController.swift */; };
+		6147008F24DD7B1700C58F7A /* Article.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6147008E24DD7B1700C58F7A /* Article.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +25,7 @@
 		6147008224DD733D00C58F7A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		6147008424DD733D00C58F7A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		6147008B24DD74EA00C58F7A /* NewsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsTableViewController.swift; sourceTree = "<group>"; };
+		6147008E24DD7B1700C58F7A /* Article.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Article.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,6 +58,7 @@
 		6147007524DD733A00C58F7A /* NewsAppMVVM+RxSwift */ = {
 			isa = PBXGroup;
 			children = (
+				6147008D24DD7AF200C58F7A /* Models */,
 				6147008A24DD74BA00C58F7A /* Controllers */,
 				6147007624DD733A00C58F7A /* AppDelegate.swift */,
 				6147007824DD733A00C58F7A /* SceneDelegate.swift */,
@@ -73,6 +76,14 @@
 				6147008B24DD74EA00C58F7A /* NewsTableViewController.swift */,
 			);
 			path = Controllers;
+			sourceTree = "<group>";
+		};
+		6147008D24DD7AF200C58F7A /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				6147008E24DD7B1700C58F7A /* Article.swift */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -146,6 +157,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6147008F24DD7B1700C58F7A /* Article.swift in Sources */,
 				6147007724DD733A00C58F7A /* AppDelegate.swift in Sources */,
 				6147007924DD733A00C58F7A /* SceneDelegate.swift in Sources */,
 				6147008C24DD74EA00C58F7A /* NewsTableViewController.swift in Sources */,
